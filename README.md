@@ -1,6 +1,6 @@
-# NetShield LAN — Secure TCP/UDP Chat & Packet Inspector (CN Project)
+# EchoLAN — LAN-Based Secure Chat Application (CN Project)
 
-A complete **Computer Networks (CN)** project implementing a **LAN-Based Secure Chat & File-Sharing Application** using Python raw sockets (`TCP SOCK_STREAM` + `UDP SOCK_DGRAM`), **2048-bit Diffie-Hellman Ephemeral Key Exchange**, and **AES-256-GCM Authenticated Encryption**.
+A complete **Computer Networks (CN)** project implementing **EchoLAN**, a **LAN-Based Secure Chat & File-Sharing Application** using Python raw sockets (`TCP SOCK_STREAM` + `UDP SOCK_DGRAM`), **2048-bit Diffie-Hellman Ephemeral Key Exchange**, and **AES-256-GCM Authenticated Encryption**.
 
 ## Quick Start
 

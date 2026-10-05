@@ -550,11 +550,20 @@ class RealTCPClientSession:
         self.peers: List[Dict[str, Any]] = []
         self._event_seq = 0
 
-    def connect(self, timeout: float = 5.0) -> Dict[str, Any]:
+    def connect(self, timeout: float = 2.0) -> Dict[str, Any]:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        sock.connect((self.server_host, self.server_port))
+        try:
+            sock.connect((self.server_host, self.server_port))
+        except OSError:
+            sock.close()
+            # Fallback to loopback 127.0.0.1 if LAN IP changed or Wi-Fi adapter blocks hairpin routing
+            self.server_host = "127.0.0.1"
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(timeout)
+            sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+            sock.connect((self.server_host, self.server_port))
         sock.settimeout(None)
         self.sock = sock
         local_ip, local_port = sock.getsockname()[:2]

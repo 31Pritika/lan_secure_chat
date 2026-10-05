@@ -45,14 +45,14 @@ def on_incoming_event(event: Dict[str, Any]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="LAN Secure Chat — Terminal TCP Client")
+    parser = argparse.ArgumentParser(description="EchoLAN — Terminal TCP Client")
     parser.add_argument("--username", "-u", default="TerminalPeer", help="Your chat username")
     parser.add_argument("--host", "-H", default=get_lan_ip(), help="Target LAN TCP Server IP")
     parser.add_argument("--port", "-p", type=int, default=TCP_CHAT_PORT, help="Target TCP Port")
     args = parser.parse_args()
 
     print("=" * 68)
-    print("  LAN-BASED SECURE CHAT APPLICATION — CLI TCP SOCKET CLIENT")
+    print("  EchoLAN — LAN-BASED SECURE CHAT CLI TCP SOCKET CLIENT")
     print("=" * 68)
     print(f"[*] Connecting TCP Socket to {args.host}:{args.port} as '{args.username}'...")
 

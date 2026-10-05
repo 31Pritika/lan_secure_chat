@@ -42,7 +42,7 @@ class ApplicationState:
         self.inspector = PacketCaptureInspector(max_packets=300)
         self.tcp_server = TCPChatServer(port=TCP_CHAT_PORT, inspector=self.inspector)
         self.udp_service = UDPDiscoveryService(
-            node_name=f"LAN-Hub ({self.hostname})",
+            node_name=f"EchoLAN-Hub ({self.hostname})",
             tcp_port=TCP_CHAT_PORT,
             udp_port=UDP_DISCOVERY_PORT,
             user_count_fn=self.tcp_server.get_active_user_count,
@@ -149,6 +149,7 @@ class DashboardHTTPHandler(BaseHTTPRequestHandler):
         path = parsed.path
 
         if path == "/api/node-info":
+            STATE.lan_ip = get_lan_ip()
             self._send_json(
                 {
                     "lan_ip": STATE.lan_ip,
@@ -353,7 +354,7 @@ def main() -> None:
     http_server = ThreadingHTTPServer(("0.0.0.0", WEB_DASHBOARD_PORT), DashboardHTTPHandler)
 
     print("=" * 74)
-    print("  LAN-BASED SECURE CHAT APPLICATION — COMPUTER NETWORKS PROJECT")
+    print("  EchoLAN — LAN-BASED SECURE CHAT APPLICATION (CN PROJECT)")
     print("=" * 74)
     print(f"  [+] Detected Primary LAN IP     : {STATE.lan_ip}")
     print(f"  [+] TCP Secure Chat Server      : {STATE.lan_ip}:{TCP_CHAT_PORT} (SOCK_STREAM, DH-2048 + AES-256-GCM)")

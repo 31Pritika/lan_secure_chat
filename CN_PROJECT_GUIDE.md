@@ -1,7 +1,7 @@
-# LAN-Based Secure Chat Application — Computer Networks (CN) Project Guide
+# EchoLAN — LAN-Based Secure Chat Application (CN Project Guide)
 
 ## 1. Project Overview (Abstract)
-The **LAN-Based Secure Chat Application** is an offline-capable, real-time messaging and file-sharing system that operates entirely over a **Local Area Network (LAN / Wi-Fi)** without requiring internet access. 
+**EchoLAN** is an offline-capable, real-time messaging and file-sharing system that operates entirely over a **Local Area Network (LAN / Wi-Fi)** without requiring internet access. 
 
 In standard LAN environments, network traffic is vulnerable to **packet sniffing (e.g., via Wireshark)** and **Man-in-the-Middle (MitM)** attacks. This project solves that problem by combining:
 1. **UDP Broadcast Peer Discovery** (`SOCK_DGRAM`) to automatically detect active hosts and chat servers on the subnet without manual IP configuration.
